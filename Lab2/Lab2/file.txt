@@ -1,0 +1,10594 @@
+#include <iostream>
+#include <string>
+
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
+#include <iostream>
+#include <string>
+while (p > 0)
+ //   lab1.cpp   : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+#include <time.h>
+#include <cmath>
+using   namespace   std;
+vector<int> v;
+
+void BatcherSortVector()
+{
+	unsigned p= v.size();
+	while (p > 0)
+	{
+		unsigned q = v.size(), r = 0, d = p;
+		bool b;
+		do
+		{
+			unsigned nTo = v.size() - d;
+			#pragma omp parallel num_threads(4)
+			#pragma omp for
+			for (int i = 0; i < nTo; i++)
+			{
+				if ((i & p) == r)
+				{
+					if (v[i] > v[i + d])
+					{
+						int temp = v[i];
+						v[i] = v[i + d];
+						v[i + d] = temp;
+					}
+				}
+			}
+			b = q != p;
+			if (b)
+			{
+				d = q - p;
+				q >>= 1;
+				r = p;
+			}
+		} while (b);
+		p >>= 1;
+	}
+}
+
+void PrintV()
+{
+	#pragma omp parallel num_threads(4)
+	#pragma omp for
+	for (int count = 0; count < v.size(); count++) 
+	{
+		//std::cout << v[count] << std::endl;
+	}
+}
+
+int FillVector(string filename)
+{
+	ifstream file(filename);
+	string str;
+	int num, min = 0, add = 2;
+	while (getline(file, str))
+	{
+		num = stoi(str);
+		if (num < min)
+		{
+			min = num;
+		}
+		v.push_back(num);
+	}
+	for (int add = 2; add < v.size(); add = add * 2)
+	{
+	}
+	add = add - v.size();
+	num = add;
+	while (num > 0)
+	{
+		v.push_back(min);
+		num--;
+	}
+	return add;
+}
+int main(int argc, char* argv[])
+{
+	clock_t time;
+	time = clock();
+	int addE = 0;
+	addE = FillVector("mas.txt");
+	BatcherSortVector();
+	//#pragma omp for
+	for (int i = 0; i < addE; i++)
+	{
+		v.erase(v.begin());
+	}
+	PrintV();
+	time = clock() - time;
+	printf("%f", (double)time / CLOCKS_PER_SEC); //"
+	cin >> addE;
+	return 0;
+}
